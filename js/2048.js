@@ -66,7 +66,13 @@ function moveCells(direction) {
             data.forEach((rowData, i) => {
                 rowData.forEach((cellData, j) => {
                     if (cellData) {
-                        newData[i].push(cellData);
+                        const currentRow = newData[i];
+                        const prevData = currentRow[currentRow.length -1];
+                        if (prevData === cellData) {
+                            currentRow[currentRow.length -1] *= 2;
+                        } else {
+                            newData[i].push(cellData);
+                        }
                     }
                 });
             });
@@ -76,13 +82,15 @@ function moveCells(direction) {
                     data[i][j] = newData[i][j] || 0;
                 });
             });
-
             break;
         case 'right' : 
+            // 오른쪽 함수 구현해야함
             break;
         case 'up' :
+            // 위쪽 함수도 구현해야합
             break;
         case 'down' :
+            // 아래쪽 함수도 구현해야함
             break;
     }
     draw();
