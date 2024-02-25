@@ -83,9 +83,30 @@ function moveCells(direction) {
                 });
             });
             break;
+
         case 'right' : 
-            // 오른쪽 함수 구현해야함
+            const newData2 = [[], [], [], []];
+            data.forEach((rowData, i) => {
+                rowData.forEach((cellData, j) => {
+                    if (rowData[3-j]) {
+                        const currentRow = newData2[i];
+                        const prevData = currentRow[currentRow.length - 1];
+                        if (prevData === rowData[3-j]) {
+                            currentRow[currentRow.length - 1] *= 2;
+                        } else {
+                            newData2[i].push(rowData[3-j]);
+                        }
+                    }
+                });
+            });
+            console.log(newData2);
+            [1,2,3,4].forEach((rowData, i) => {
+                [1,2,3,4].forEach((cellData, j) => {
+                    data[i][3-j] = Math.abs(newData[i][j]) || 0;
+                })
+            })
             break;
+
         case 'up' :
             // 위쪽 함수도 구현해야합
             break;
