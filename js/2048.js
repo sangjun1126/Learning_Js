@@ -92,7 +92,7 @@ function moveCells(direction) {
                         const currentRow = newData2[i];
                         const prevData = currentRow[currentRow.length - 1];
                         if (prevData === rowData[3-j]) {
-                            currentRow[currentRow.length - 1] *= 2;
+                            currentRow[currentRow.length - 1] *= -2;
                         } else {
                             newData2[i].push(rowData[3-j]);
                         }
@@ -102,16 +102,55 @@ function moveCells(direction) {
             console.log(newData2);
             [1,2,3,4].forEach((rowData, i) => {
                 [1,2,3,4].forEach((cellData, j) => {
-                    data[i][3-j] = Math.abs(newData[i][j]) || 0;
+                    data[i][3-j] = Math.abs(newData2[i][j]) || 0;
                 })
             })
             break;
 
         case 'up' :
-            // 위쪽 함수도 구현해야합
+            const newData3 = [[], [], [], []];
+            data.forEach((rowData, i) => {
+                rowData.forEach((cellData, j) => {
+                    if (cellData) {
+                        const currentRow = newData3[j];
+                        const prevData = currentRow[currentRow.length -1];
+                        if (prevData === cellData) {
+                            currentRow[currentRow.length -1] *= -2;
+                        } else {
+                            newData3[j].push(cellData);
+                        }
+                    }
+                });
+            });
+            console.log(newData3);
+            [1,2,3,4].forEach((cellData, i) => {
+                [1,2,3,4].forEach((rowData, j) => {
+                    data[j][i] = Math.abs(newData3[i][j]) || 0;
+                })
+            })
             break;
+
         case 'down' :
-            // 아래쪽 함수도 구현해야함
+            const newData4 = [[], [], [], []];
+            data.forEach((rowData, i) => {
+                rowData.forEach((cellData, j) => {
+                    if (data[3-i][j]) {
+                        const currentRow = newData4[j];
+                        const prevData = currentRow[currentRow.length -1];
+                        if (prevData === data[3 - i][j]) {
+                            currentRow[currentRow.length -1] *= -2;
+                        } else {
+                            newData4[j].push(data[3-i][j]);
+                        }
+                    }
+                });
+            });
+            console.log(newData4);
+            [1,2,3,4].forEach((cellData, i) => {
+                [1,2,3,4].forEach((rowData, j) => {
+                    data[3-j][i] = Math.abs(newData4[i][j]) || 0;
+                })
+            })
             break;
     }
     draw();
