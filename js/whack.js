@@ -59,7 +59,7 @@ $$cells.forEach(($cell, index) => {
             setTimeout(() => {
                 holes[index] = 0;
                 event.target.classList.remove('boom');
-            }, 1000);
+            }, 2000);
         });
     })
 })
