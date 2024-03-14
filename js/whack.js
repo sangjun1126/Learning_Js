@@ -1,3 +1,4 @@
+// document로 객체 받아오기 꼭 기억
 const $timer = document.querySelector('#timer');
 const $score = document.querySelector('#score');
 const $game = document.querySelector('#game');
@@ -59,7 +60,7 @@ $$cells.forEach(($cell, index) => {
             setTimeout(() => {
                 holes[index] = 0;
                 event.target.classList.remove('boom');
-            }, 2000);
+            }, 1000);
         });
     })
 })
